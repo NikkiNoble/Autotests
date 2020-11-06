@@ -1,24 +1,22 @@
 package mainFiles;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class LoginPageTest {
-    private static By mailInput = By.xpath("//input[@name='email'][@placeholder='Заполните...']");
-    private static By blueNextButton = By.xpath("//div[@data-xpath='signin_next']");
-    private static By passwordInput = By.xpath("//input[@name='password'][@placeholder='Пароль']");
-    private static By enterButton = By.xpath("//div[@data-xpath='signin_btn']");
-    private static By workingDesk = By.className("_14CaT");
-
-    public static void loginToAcroplia() {
-        TestHelper.openPage();
-        Driver.driver.findElement(mailInput).sendKeys("acroplia.avtobot@gmail.com");
-        Driver.driver.findElement(blueNextButton).click();
-        WebDriverWait wait = new WebDriverWait(Driver.driver, 15);
-        wait.until(visibilityOfElementLocated(passwordInput));
-        Driver.driver.findElement(passwordInput).sendKeys("123456");
-        Driver.driver.findElement(enterButton).click();
-        wait.until(visibilityOfElementLocated(workingDesk));
+    public static By mailInput = By.xpath("//input[@name='email'][@placeholder='Заполните...']");
+    public static By phoneInput = By.xpath("//input[@name='phone']");
+    public static By blueNextButton = By.xpath("//div[@data-test-id='signin_next']");
+    public static By passwordInput = By.xpath("//input[@name='password'][@placeholder='Пароль']");
+    public static By enterButton = By.xpath("//div[@data-test-id='signin_btn']");
+    public static By workingDesk = By.className("_14CaT");
+    public static By phoneNumber = By.cssSelector("[data-test-id='byPhone']");
+    public static By wrongAddress = By.xpath("//*[contains(text(), 'Неверный адрес электронной почты')]");
+    public static By wrongUser = By.xpath("//*[contains(text(), 'Пользователь не найден')]");
+    public static void findWrongAddressAlert() {
+        Driver.driver.findElement(wrongAddress).isDisplayed();
     }
+    public static void findWrongUserAlert() {
+        Driver.driver.findElement(wrongUser).isDisplayed();
+    }
+
 }
